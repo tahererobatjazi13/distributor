@@ -21,6 +21,7 @@ class CustomSnackBarView @JvmOverloads constructor(
     var ivBackground: ImageView
     var clMain: ConstraintLayout
     var clRoot: ConstraintLayout
+    var ivClose: ImageView
 
     init {
         View.inflate(context, R.layout.comp_snackbar_view, this)
@@ -30,6 +31,7 @@ class CustomSnackBarView @JvmOverloads constructor(
         this.ivBackground = findViewById(R.id.ivBackground)
         this.clMain = findViewById(R.id.clMain)
         this.clRoot = findViewById(R.id.clRoot)
+        this.ivClose = findViewById(R.id.ivClose)
         this.tvMessage.typeface = getTypefaceRegular(context)
     }
 

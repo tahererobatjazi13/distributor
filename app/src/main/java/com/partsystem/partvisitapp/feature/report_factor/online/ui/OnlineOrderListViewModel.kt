@@ -26,26 +26,87 @@ class OnlineOrderListViewModel @Inject constructor(
     private val _customerList = MutableLiveData<NetworkResult<List<ReportFactorDto>>>()
     val reportFactorCustomerList: LiveData<NetworkResult<List<ReportFactorDto>>> = _customerList
 
+    // نگهداری وضعیت فعلی برای اینکه در اسکرول بعدی هم اعمال شوند
+    private var lastCondition = ""
+    private var lastQuery = ""
+
     private var originalVisitor = emptyList<ReportFactorDto>()
     private var originalCustomer = emptyList<ReportFactorDto>()
 
-    fun fetchReportFactorVisitorList(type: Int, visitorId: Int, condition: String) =
+
+    fun fetchReportFactorVisitorList(
+        type: Int,
+        visitorId: Int,
+        baseCondition: String,
+        query: String,
+        pageNumber: Int,
+        pageSize: Int
+    ) = viewModelScope.launch {
+
+        // همیشه Loading بفرست
+        _visitorList.value = NetworkResult.Loading
+
+        lastCondition = baseCondition
+        lastQuery = query
+
+        val finalCondition =
+            if (query.isBlank()) baseCondition
+            else "$baseCondition AND CustomerName LIKE N'%$query%'"
+
+        val result = onlineOrderListRepository.getReportFactorVisitor(
+            type,
+            visitorId,
+            finalCondition,
+            pageNumber,
+            pageSize
+        )
+
+        _visitorList.value = result
+    }
+
+    fun fetchReportFactorCustomerList(
+        type: Int,
+        customerId: Int,
+        query: String,
+        pageNumber: Int,
+        pageSize: Int
+    ) = viewModelScope.launch {
+
+        _customerList.value = NetworkResult.Loading
+
+        lastQuery = query
+
+        val finalCondition =
+            if (query.isBlank()) ""
+            else "AND CustomerName LIKE N'%$query%'"
+
+        val result = onlineOrderListRepository.getReportFactorCustomer(
+            type,
+            customerId,
+            pageNumber,
+            pageSize
+        )
+
+        _customerList.value = result
+    }
+
+/*
+
+    fun fetchReportFactorVisitorList(type: Int, visitorId: Int, condition: String, pageNumber: Int, pageSize: Int) =
         viewModelScope.launch {
             _visitorList.value = NetworkResult.Loading
-            when (val result =
-                onlineOrderListRepository.getReportFactorVisitor(type, visitorId, condition)) {
+            when (val result = onlineOrderListRepository.getReportFactorVisitor(type, visitorId, condition, pageNumber, pageSize)) {
                 is NetworkResult.Success -> {
                     originalVisitor = result.data
                     _visitorList.value = result
                 }
-
                 else -> _visitorList.value = result
             }
         }
 
-    fun fetchReportFactorCustomerList(type: Int, customerId: Int) = viewModelScope.launch {
+    fun fetchReportFactorCustomerList(type: Int, customerId: Int, pageNumber: Int, pageSize: Int) = viewModelScope.launch {
         _customerList.value = NetworkResult.Loading
-        when (val result = onlineOrderListRepository.getReportFactorCustomer(type, customerId)) {
+        when (val result = onlineOrderListRepository.getReportFactorCustomer(type, customerId, pageNumber, pageSize)) {
             is NetworkResult.Success -> {
                 originalCustomer = result.data
                 _customerList.value = result
@@ -54,6 +115,7 @@ class OnlineOrderListViewModel @Inject constructor(
             else -> _customerList.value = result
         }
     }
+*/
 
     fun searchVisitorList(query: String) {
         val q = query.trim().toEnglishDigits()
@@ -78,13 +140,23 @@ class OnlineOrderListViewModel @Inject constructor(
 
     }
 
-
     private val _reportFactorDetail = MutableLiveData<NetworkResult<List<ReportFactorDto>>>()
     val reportFactorDetail: LiveData<NetworkResult<List<ReportFactorDto>>> = _reportFactorDetail
 
-    fun fetchReportFactorDetail(type: Int, factorId: Int) = viewModelScope.launch {
-        _reportFactorDetail.value = NetworkResult.Loading
-        _reportFactorDetail.value = onlineOrderListRepository.getReportFactorDetail(type, factorId)
+    private var currentDetailList = mutableListOf<ReportFactorDto>()
+
+    fun fetchReportFactorDetail(type: Int, factorId: Int, pageNumber: Int, pageSize: Int) = viewModelScope.launch {
+        if (pageNumber == 1) _reportFactorDetail.value = NetworkResult.Loading
+
+        val result = onlineOrderListRepository.getReportFactorDetail(type, factorId, pageNumber, pageSize)
+
+        if (result is NetworkResult.Success) {
+            if (pageNumber == 1) currentDetailList.clear()
+            currentDetailList.addAll(result.data)
+            _reportFactorDetail.value = NetworkResult.Success(currentDetailList.toList())
+        } else {
+            _reportFactorDetail.value = result
+        }
     }
 
     // یک تابع اکستنشن برای فیلتر تمیز

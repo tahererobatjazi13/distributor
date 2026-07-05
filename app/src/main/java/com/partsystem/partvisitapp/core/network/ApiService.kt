@@ -90,24 +90,30 @@ interface ApiService {
     @GET("Discount")
     suspend fun getDiscounts(): Response<List<DiscountDto>>
 
-
     @GET("ReportFactor")
     suspend fun getReportFactorVisitor(
         @Query("type") type: Int,
         @Query("VisitorId") visitorId: Int,
-        @Query("Condition") condition: String
+        @Query("Condition") condition: String,
+        @Query("PageNumber") pageNumber: Int,
+        @Query("PageSize") pageSize: Int
     ): Response<List<ReportFactorDto>>
 
     @GET("ReportFactor")
     suspend fun getReportFactorDetail(
         @Query("type") type: Int,
-        @Query("FactorId") factorId: Int
+        @Query("FactorId") factorId: Int,
+        @Query("PageNumber") pageNumber: Int,
+        @Query("PageSize") pageSize: Int
     ): Response<List<ReportFactorDto>>
+
 
     @GET("ReportFactor")
     suspend fun getReportFactorCustomer(
         @Query("type") type: Int,
-        @Query("CustomerId") customerId: Int
+        @Query("CustomerId") customerId: Int,
+        @Query("PageNumber") pageNumber: Int,
+        @Query("PageSize") pageSize: Int
     ): Response<List<ReportFactorDto>>
 
 

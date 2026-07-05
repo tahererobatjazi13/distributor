@@ -26,4 +26,16 @@ interface ProductPackingDao {
         packingId: Int,
         productId: Int
     ): List<ProductPackingEntity>
+
+    @Query(
+        """
+    SELECT packingId 
+    FROM ProductPacking
+    WHERE productId = :productId
+    LIMIT 1
+    """
+    )
+    suspend fun getPackingIdByProductId(productId: Int): Int?
+
 }
+

@@ -26,11 +26,17 @@ class OnlineOrderListAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(item: ReportFactorDto) = with(binding) {
-            //tvOrderNumber.text = "${bindingAdapterPosition + 1}_  ${item.id}"
+          // tvOrderNumber.text = "${bindingAdapterPosition + 1}_  ${item.id}"
 
             tvOrderNumber.text = item.code.toString()
             tvCustomerName.text = item.customerName
-            tvCustomerDirection.text = item.directionName
+
+            if (!item.directionName.isNullOrEmpty()) {
+                binding.clCustomerDirection.show()
+                binding.tvCustomerDirection.text = item.directionName
+            } else {
+                binding.clCustomerDirection.gone()
+            }
             tvPatternName.text = item.patternName
             tvDateTime.text = item.persianDate + " _ " + item.createTime
             tvFinalPrice.text = formatter.format(item.finalPrice) + " ریال"

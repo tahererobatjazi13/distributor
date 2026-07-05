@@ -292,7 +292,8 @@ class OfflineOrderListFragment : Fragment() {
                     CustomSnackBar.make(
                         requireView(),
                         "  ${state.message}",
-                        SnackBarType.Error.value
+                        SnackBarType.Error.value,
+                        isIndefinite = true
                     )?.show()
 
                     factorViewModel.updateSabtFromOfflineList(

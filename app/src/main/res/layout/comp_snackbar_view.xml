@@ -10,11 +10,11 @@
         android:id="@+id/ivBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/bg_rounded_rectangle_small"
         app:layout_constraintBottom_toBottomOf="@+id/clMain"
         app:layout_constraintEnd_toEndOf="@+id/clMain"
         app:layout_constraintStart_toStartOf="@+id/clMain"
-        app:layout_constraintTop_toTopOf="@+id/clMain" />
+        app:layout_constraintTop_toTopOf="@+id/clMain"
+        app:srcCompat="@drawable/bg_rounded_rectangle_small" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clMain"
@@ -27,13 +27,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_marginStart="@dimen/xx_small_size"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            app:tint="@color/white"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/llMessage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/llMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivIcon"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivClose"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView

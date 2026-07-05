@@ -34,59 +34,87 @@ class CustomSnackBar(
             message: String,
             snackBarType: String,
             dimen: Int? = 0,
+            isIndefinite: Boolean = false
         ): CustomSnackBar? {
-            // First we find a suitable parent for our custom view
             val h = view
             h.elevation = 1000F
+
             val parent = view.findSuitableParent() ?: throw IllegalArgumentException(
                 "No suitable parent found from the given view. Please provide a valid view."
             )
-            // We inflate our custom view
+
             try {
                 val customView = LayoutInflater.from(view.context).inflate(
                     R.layout.comp_snackbar_layout,
                     parent,
                     false
                 ) as CustomSnackBarView
-                // We create and return our SnackBar
+
                 customView.tvMessage.text = message
 
                 if (dimen != 0) {
                     customView.clRoot.setPadding(0, 0, 0, dimen!!)
                 } else {
-                    val tDimen = view.context.resources.getDimension(R.dimen.xxx_small_size).toInt()
+                    val tDimen = view.context.resources
+                        .getDimension(R.dimen.xxx_small_size)
+                        .toInt()
                     customView.clRoot.setPadding(0, 0, 0, tDimen)
                 }
+
                 val backColor: Int
-                val duration: Int = Snackbar.LENGTH_SHORT
+                val duration: Int
 
                 when (snackBarType) {
                     SnackBarType.Error.value -> {
                         customView.ivIcon.setImageResource(R.drawable.ic_warning)
                         backColor = getColorAttr(view.context, R.attr.colorError)
                         customView.ivBackground.setColorFilter(backColor)
+
+                        duration = if (isIndefinite) {
+                            Snackbar.LENGTH_INDEFINITE
+                        } else {
+                            Snackbar.LENGTH_SHORT
+                        }
                     }
+
 
                     SnackBarType.Success.value -> {
                         customView.ivIcon.setImageResource(R.drawable.ic_check)
                         backColor = getColorAttr(view.context, R.attr.colorSuccess)
                         customView.ivBackground.setColorFilter(backColor)
+
+                        duration = Snackbar.LENGTH_SHORT
                     }
 
                     SnackBarType.Warning.value -> {
                         customView.ivIcon.setImageResource(R.drawable.ic_warning)
                         backColor = getColorAttr(view.context, R.attr.colorWarning)
                         customView.ivBackground.setColorFilter(backColor)
+
+                        duration = Snackbar.LENGTH_SHORT
+                    }
+
+                    else -> {
+                        backColor = getColorAttr(view.context, R.attr.colorError)
+                        customView.ivBackground.setColorFilter(backColor)
+
+                        duration = Snackbar.LENGTH_SHORT
                     }
                 }
 
-                return CustomSnackBar(
-                    parent,
-                    customView
-                ).setDuration(duration)
+                val snackBar = CustomSnackBar(parent, customView).setDuration(duration)
+
+                customView.ivClose.setOnClickListener {
+                    snackBar.dismiss()
+                }
+
+                return snackBar
+
 
             } catch (e: Exception) {
+                e.printStackTrace()
             }
+
             return null
         }
 

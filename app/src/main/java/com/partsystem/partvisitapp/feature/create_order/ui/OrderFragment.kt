@@ -330,12 +330,12 @@ class OrderFragment : Fragment() {
                     is NetworkResult.Error -> {
                         binding.bmbSendOrder.checkShowPbOne(false)
 
+
                         CustomSnackBar.make(
                             requireActivity().findViewById(android.R.id.content),
                             result.message,
                             SnackBarType.Error.value
                         )?.show()
-
                     }
                 }
             }
@@ -480,12 +480,13 @@ class OrderFragment : Fragment() {
                     binding.tvProgressBar.gone()
 
                     Log.d("finalPriceMessage", state.message)
+
                     CustomSnackBar.make(
                         requireView(),
                         "  ${state.message}",
-                        SnackBarType.Error.value
+                        SnackBarType.Error.value,
+                        isIndefinite = true
                     )?.show()
-
                     viewLifecycleOwner.lifecycleScope.launch {
                         factorViewModel.removeGiftsAndDiscounts(args.factorId)
                         factorViewModel.markDiscountRemoved()

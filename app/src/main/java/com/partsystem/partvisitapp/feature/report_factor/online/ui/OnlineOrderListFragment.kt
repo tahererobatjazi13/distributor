@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.partsystem.partvisitapp.R
 import com.partsystem.partvisitapp.core.network.NetworkResult
 import com.partsystem.partvisitapp.core.utils.ReportFactorListType
@@ -32,6 +33,7 @@ import com.partsystem.partvisitapp.core.utils.fixPersianChars
 import com.partsystem.partvisitapp.databinding.FragmentOrderListBinding
 import com.partsystem.partvisitapp.feature.report_factor.online.adapter.OnlineOrderListAdapter
 import com.partsystem.partvisitapp.feature.report_factor.online.bottomSheet.FilterOrderBottomSheet
+import com.partsystem.partvisitapp.feature.report_factor.online.model.ReportFactorDto
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
@@ -56,6 +58,16 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
     private val searchIcon by lazy { requireContext().getDrawable(R.drawable.ic_search) }
     private val clearIcon by lazy { requireContext().getDrawable(R.drawable.ic_clear) }
 
+
+    private var currentPage = 1
+    private val pageSize = 10
+    private var isLoadingMore = false
+    private var hasMoreData = true
+    private var currentList = mutableListOf<ReportFactorDto>()
+
+    private var searchJob: kotlinx.coroutines.Job? = null
+    private var currentQuery = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,7 +83,12 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
         setupClearIcon()
         initAdapter()
         setupObserver()
-        setupSearch()
+
+        if (args.typeList == ReportFactorListType.Visitor.value) {
+            setupSearch()
+        } else {
+            binding.clTop.gone()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -124,18 +141,42 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
 
             // ادامه کد مربوط به دریافت لیست...
             if (args.typeList == ReportFactorListType.Visitor.value) {
+
+                binding.etSearch.show()
+
                 if (args.typeVisitor == ReportFactorVisitorType.All.value) {
                     binding.hfOrderList.show()
                     binding.hfOrderList.textTitle =
                         requireContext().getString(R.string.label_order_list)
                     binding.clFilter.visibility = View.VISIBLE
-                    viewModel.fetchReportFactorVisitorList(0, args.id, condition)
+                    currentPage = 1
+                    currentList.clear()
+                    hasMoreData = true
+                    isLoadingMore = false
+
+                    viewModel.fetchReportFactorVisitorList(
+                        0,
+                        args.id,
+                        condition, currentQuery,
+                        currentPage,
+                        pageSize
+                    )
                     Log.d("conditionBase6", condition)
 
                 } else {
                     val persianDate = getTodayPersianDateLatin()
                     condition = "And PersianDate = '$persianDate'"
-                    viewModel.fetchReportFactorVisitorList(0, args.id, condition)
+                    currentPage = 1
+                    currentList.clear()
+                    hasMoreData = true
+                    isLoadingMore = false
+                    viewModel.fetchReportFactorVisitorList(
+                        0,
+                        args.id,
+                        condition, currentQuery,
+                        currentPage,
+                        pageSize
+                    )
                     Log.d("conditionBase7", condition)
 
                     binding.hfOrderList.gone()
@@ -143,7 +184,21 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
                 }
             } else {
                 binding.hfOrderList.show()
-                viewModel.fetchReportFactorCustomerList(0, args.id)
+                binding.clTop.gone()
+
+                currentPage = 1
+                currentList.clear()
+                hasMoreData = true
+                isLoadingMore = false
+
+                viewModel.fetchReportFactorCustomerList(
+                    0,
+                    args.id,
+                    currentQuery,
+                    currentPage,
+                    pageSize
+                )
+
             }
         }
     }
@@ -156,7 +211,20 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
         binding.ivFilter.setImageDrawable(requireContext().getDrawable(R.drawable.ic_filter_account))
         condition = ""
         binding.tvCountFilter.gone()
-        viewModel.fetchReportFactorVisitorList(0, args.id, condition)
+
+        currentPage = 1
+        isLoadingMore = false
+        currentList.clear()
+
+        viewModel.fetchReportFactorVisitorList(
+            0,
+            args.id,
+            condition,
+            currentQuery,
+            currentPage,
+            pageSize
+        )
+
         Log.d("conditionBase2", condition)
     }
 
@@ -178,11 +246,24 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
         tryAgain.setOnClickListener {
             tryAgain.gone()
             if (args.typeList == ReportFactorListType.Visitor.value) {
-                viewModel.fetchReportFactorVisitorList(0, args.id, condition)
+                viewModel.fetchReportFactorVisitorList(
+                    0,
+                    args.id,
+                    condition,
+                    currentQuery,
+                    currentPage,
+                    pageSize
+                )
                 Log.d("conditionBase3", condition)
             } else {
                 Log.d("conditionBase4", condition)
-                viewModel.fetchReportFactorCustomerList(0, args.id)
+                viewModel.fetchReportFactorCustomerList(
+                    0,
+                    args.id,
+                    currentQuery,
+                    currentPage,
+                    pageSize
+                )
 
             }
         }
@@ -225,29 +306,94 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
     }
 
     private fun initAdapter() = binding.apply {
-        rvOrderList.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val linearLayoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-            onlineOrderListAdapter = OnlineOrderListAdapter(showSyncButton = false) { factors ->
+        rvOrderList.layoutManager = linearLayoutManager
 
-                if (factors.finalPrice.toInt() != 0) {
-                    val action =
-                        OnlineOrderListFragmentDirections.actionOnlineOrderListFragmentToOnlineOrderDetailFragment(
-                            factors.id
-                        )
-                    findNavController().navigate(action)
-                } else {
-                    CustomSnackBar.make(
-                        requireView(),
-                        getString(R.string.error_not_detail),
-                        SnackBarType.Error.value
-                    )?.show()
-                }
+        onlineOrderListAdapter = OnlineOrderListAdapter(showSyncButton = false) { factors ->
+            if (factors.finalPrice.toInt() != 0) {
+                val action = OnlineOrderListFragmentDirections
+                    .actionOnlineOrderListFragmentToOnlineOrderDetailFragment(factors.id)
+                findNavController().navigate(action)
+            } else {
+                CustomSnackBar.make(
+                    requireView(),
+                    getString(R.string.error_not_detail),
+                    SnackBarType.Error.value
+                )?.show()
             }
-            adapter = onlineOrderListAdapter
         }
+
+        rvOrderList.adapter = onlineOrderListAdapter
+
+        rvOrderList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                // dy > 0 یعنی اسکرول به سمت پایین است
+                if (dy <= 0 || isLoadingMore || !hasMoreData) return
+
+                val visibleItemCount = linearLayoutManager.childCount
+                val totalItemCount = linearLayoutManager.itemCount
+                val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
+
+                val reachedEnd =
+                    (visibleItemCount + firstVisibleItemPosition) >= (totalItemCount - 1)
+// داخل initAdapter / onScrolled:
+                if (reachedEnd && totalItemCount >= pageSize) {
+                    isLoadingMore = true
+                    currentPage++
+
+                    if (args.typeList == ReportFactorListType.Visitor.value) {
+                        viewModel.fetchReportFactorVisitorList(
+                            0,
+                            args.id,
+                            condition,
+                            currentQuery,
+                            currentPage,
+                            pageSize
+                        )
+                    } else {
+                        viewModel.fetchReportFactorCustomerList(
+                            0,
+                            args.id,
+                            currentQuery,
+                            currentPage,
+                            pageSize
+                        )
+                    }
+                }
+
+                /*
+                                if (reachedEnd && totalItemCount >= pageSize) {
+                                    isLoadingMore = true
+                                    currentPage++
+
+                                    // مدیریت شرطی فراخوانی API بر اساس نوع لیست
+                                    if (args.typeList == ReportFactorListType.Visitor.value) {
+                                        viewModel.fetchReportFactorVisitorList(
+                                            0,
+                                            args.id,
+                                            condition,
+                                            currentPage,
+                                            pageSize
+                                        )
+                                    } else {
+                                        // اضافه شدن منطق صفحه‌بندی برای حالت مشتری
+                                        viewModel.fetchReportFactorCustomerList(
+                                            0,
+                                            args.id,
+                                            currentPage,
+                                            pageSize
+                                        )
+                                    }
+                                }
+                */
+            }
+        })
     }
+
 
     private fun setupObserver() = binding.apply {
 
@@ -260,53 +406,179 @@ class OnlineOrderListFragment : Fragment(), FilterOrderBottomSheet.OnFilterAppli
         liveData.observe(viewLifecycleOwner) { result ->
 
             when (result) {
-
                 is NetworkResult.Loading -> {
-                    loading.show()
-                    rvOrderList.hide()
+                    // اگر داریم صفحه اول را می‌گیریم (مثلاً فیلتر جدید)
+                    if (currentPage == 1) {
+                        // فقط اگر لیست خالی است، لودینگ وسط را نشان بده
+                        // در غیر این صورت، بگذار لیست قبلی بماند تا دیتای جدید برسد
+                        if (currentList.isEmpty()) {
+                            loading.show()
+                            rvOrderList.hide()
+                        }
+                        // اگر currentList خالی نیست، بگذار لیست قبلی زیر سایه لودینگ بماند (UX بهتر)
+                    } else {
+                        // برای صفحات بعدی، فقط لودینگ پایین (پاجینگ) را نشان بده
+                        pagingLoading.show()
+                        loading.gone()
+                    }
                 }
+
+                /*     is NetworkResult.Loading -> {
+                         if (currentPage == 1) {
+                             loading.show()
+                             rvOrderList.hide()
+                             pagingLoading.gone()
+                             info.gone()
+                             tryAgain.gone()
+                         } else {
+                             pagingLoading.show()
+                             loading.gone()
+                             rvOrderList.show()
+                         }
+                     }*/
+
 
                 is NetworkResult.Success -> {
                     loading.gone()
+                    pagingLoading.gone()
+                    isLoadingMore = false
 
-                    val orderList = result.data
-                    if (orderList.isEmpty()) {
+                    val newList = result.data
+                    hasMoreData = newList.size >= pageSize
+
+                    if (currentPage == 1) {
+                        currentList = newList.toMutableList()
+                    } else {
+                        currentList.addAll(newList)
+                    }
+
+                    if (currentList.isEmpty()) {
                         info.show()
                         info.message(getString(R.string.msg_no_order))
                         rvOrderList.hide()
                     } else {
                         info.gone()
                         rvOrderList.show()
-                        onlineOrderListAdapter.submitList(orderList)
+                        onlineOrderListAdapter.submitList(currentList.toList())
                     }
                 }
 
                 is NetworkResult.Error -> {
                     loading.gone()
-                    tryAgain.show()
-                    rvOrderList.hide()
-                    tryAgain.message = result.message
+                    pagingLoading.gone()
+                    isLoadingMore = false
+
+                    if (currentPage == 1) {
+                        tryAgain.show()
+                        rvOrderList.hide()
+                        tryAgain.message = result.message
+                    } else {
+                        CustomSnackBar.make(
+                            requireView(),
+                            result.message,
+                            SnackBarType.Error.value
+                        )?.show()
+                    }
                 }
             }
         }
     }
 
+
     private fun setupSearch() = binding.apply {
         etSearch.addTextChangedListener { editable ->
             val query = convertNumbersToEnglish(fixPersianChars(editable.toString()))
 
+            // تغییر آیکون
             etSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(
                 null, null,
                 if (query.isEmpty()) searchIcon else clearIcon,
                 null
             )
 
-            if (args.typeList == ReportFactorListType.Visitor.value)
-                viewModel.searchVisitorList(query)
-            else
-                viewModel.searchCustomerList(query)
+            // اینجا Debounce اعمال می‌شود
+            searchJob?.cancel() // درخواست قبلی (اگر در حال انتظار بود) لغو می‌شود
+            searchJob = viewLifecycleOwner.lifecycleScope.launch {
+
+                // اگر کاربر دارد تایپ می‌کند، ۵۰۰ میلی‌ثانیه صبر کن
+                if (query.isNotEmpty()) {
+                    kotlinx.coroutines.delay(500)
+                }
+
+                // انجام جستجو بعد از توقف تایپ
+                currentQuery = query
+                currentPage = 1
+
+                // لیست را فقط وقتی درخواست ارسال شد پاک کن
+                // (یا اگر می‌خواهی لیست قبلی تا رسیدن نتیجه بماند، این خط را بردار)
+                currentList.clear()
+
+                if (args.typeList == ReportFactorListType.Visitor.value) {
+                    viewModel.fetchReportFactorVisitorList(
+                        0,
+                        args.id,
+                        condition,
+                        currentQuery,
+                        currentPage,
+                        pageSize
+                    )
+                } else {
+                    viewModel.fetchReportFactorCustomerList(
+                        0,
+                        args.id,
+                        currentQuery,
+                        currentPage,
+                        pageSize
+                    )
+                }
+            }
         }
     }
+
+    /*
+        private fun setupSearch() = binding.apply {
+            etSearch.addTextChangedListener { editable ->
+                val query = convertNumbersToEnglish(fixPersianChars(editable.toString()))
+
+                // تغییر آیکون
+                etSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    null, null,
+                    if (query.isEmpty()) searchIcon else clearIcon,
+                    null
+                )
+
+                // بازنشانی برای جستجوی جدید
+                currentQuery = query
+                currentPage = 1
+                currentList.clear() // لیست قبلی را پاک کن تا نتایج جدید جایگزین شوند
+
+                // صدا زدن متد Fetch (به جای متد سرچ قدیمی)
+                if (args.typeList == ReportFactorListType.Visitor.value) {
+                    viewModel.fetchReportFactorVisitorList(0, args.id, condition, currentQuery, currentPage, pageSize)
+                } else {
+                    viewModel.fetchReportFactorCustomerList(0, args.id, currentQuery, currentPage, pageSize)
+                }
+            }
+        }
+    */
+
+
+    /*    private fun setupSearch() = binding.apply {
+            etSearch.addTextChangedListener { editable ->
+                val query = convertNumbersToEnglish(fixPersianChars(editable.toString()))
+
+                etSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    null, null,
+                    if (query.isEmpty()) searchIcon else clearIcon,
+                    null
+                )
+
+                if (args.typeList == ReportFactorListType.Visitor.value)
+                    viewModel.searchVisitorList(query)
+                else
+                    viewModel.searchCustomerList(query)
+            }
+        }*/
 
     fun onBottomSheetDismissed() {
         isFilterBottomSheetOpen = false

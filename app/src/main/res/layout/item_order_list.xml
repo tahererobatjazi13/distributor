@@ -142,7 +142,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCustomerDirection"
-                style="@style/SmallBoldTextStyle"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/xx_small_size"
@@ -199,7 +199,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clDateTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xx_small_size">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvTitleDateTime"

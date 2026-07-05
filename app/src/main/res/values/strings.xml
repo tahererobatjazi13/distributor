@@ -8,6 +8,7 @@
     <string name="label_orders">سفارشات</string>
     <string name="label_register_order">ثبت سفارش</string>
     <string name="label_reports">گزارشات</string>
+
     <string name="label_customers">مشتریان</string>
     <string name="label_setting">تنظیمات</string>
     <string name="label_receiving_data">دریافت اطلاعات</string>

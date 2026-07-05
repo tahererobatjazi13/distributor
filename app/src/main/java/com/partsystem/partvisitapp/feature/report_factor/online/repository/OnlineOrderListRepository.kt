@@ -18,20 +18,20 @@ class OnlineOrderListRepository @Inject constructor(
     suspend fun getReportFactorVisitor(
         type: Int,
         visitorId: Int,
-        condition: String
+        condition: String,
+        pageNumber: Int,
+        pageSize: Int
     ): NetworkResult<List<ReportFactorDto>> {
         return try {
-            val response = api.getReportFactorVisitor(type, visitorId, condition)
+            val response =
+                api.getReportFactorVisitor(type, visitorId, condition, pageNumber, pageSize)
             val body = response.body()
 
             if (response.isSuccessful && body != null) {
                 NetworkResult.Success(body)
             } else {
-                val errorMessage = ErrorHandler.getHttpErrorMessage(
-                    context,
-                    response.code(),
-                    response.message()
-                )
+                val errorMessage =
+                    ErrorHandler.getHttpErrorMessage(context, response.code(), response.message())
                 NetworkResult.Error(errorMessage)
             }
         } catch (ex: Exception) {
@@ -42,20 +42,19 @@ class OnlineOrderListRepository @Inject constructor(
 
     suspend fun getReportFactorCustomer(
         type: Int,
-        customerId: Int
+        customerId: Int,
+        pageNumber: Int,
+        pageSize: Int
     ): NetworkResult<List<ReportFactorDto>> {
         return try {
-            val response = api.getReportFactorCustomer(type, customerId)
+            val response = api.getReportFactorCustomer(type, customerId, pageNumber, pageSize)
             val body = response.body()
 
             if (response.isSuccessful && body != null) {
                 NetworkResult.Success(body)
             } else {
-                val errorMessage = ErrorHandler.getHttpErrorMessage(
-                    context,
-                    response.code(),
-                    response.message()
-                )
+                val errorMessage =
+                    ErrorHandler.getHttpErrorMessage(context, response.code(), response.message())
                 NetworkResult.Error(errorMessage)
             }
         } catch (ex: Exception) {
@@ -66,25 +65,22 @@ class OnlineOrderListRepository @Inject constructor(
 
     suspend fun getReportFactorDetail(
         type: Int,
-        factorId: Int
+        factorId: Int,
+        pageNumber: Int,
+        pageSize: Int
     ): NetworkResult<List<ReportFactorDto>> {
         return try {
-            val response = api.getReportFactorDetail(type, factorId)
+            val response = api.getReportFactorDetail(type, factorId, pageNumber, pageSize)
             val body = response.body()
-
             if (response.isSuccessful && body != null) {
                 NetworkResult.Success(body)
             } else {
-                val errorMessage = ErrorHandler.getHttpErrorMessage(
-                    context,
-                    response.code(),
-                    response.message()
-                )
+                val errorMessage =
+                    ErrorHandler.getHttpErrorMessage(context, response.code(), response.message())
                 NetworkResult.Error(errorMessage)
             }
         } catch (ex: Exception) {
-            val errorMsg = getExceptionMessage(context, ex)
-            NetworkResult.Error(errorMsg)
+            NetworkResult.Error(getExceptionMessage(context, ex))
         }
     }
 }

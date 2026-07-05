@@ -32,7 +32,8 @@
             android:id="@+id/tilSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_size"
+            android:layout_marginTop="@dimen/medium_size"
+            android:layout_marginHorizontal="@dimen/medium_size"
             android:background="@drawable/selector_search_input"
             app:boxBackgroundMode="none"
             app:hintEnabled="false"
@@ -111,15 +112,28 @@
     <!-- line list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOrderList"
+        android:layout_marginTop="@dimen/small_size"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:elevation="@dimen/xx_small_size"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/pagingLoading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clTop"
         tools:itemCount="10"
         tools:listitem="@layout/item_order_list" />
+
+    <!-- DotLoading Paging -->
+    <com.partsystem.partvisitapp.core.utils.componenet.DotLoading
+        android:id="@+id/pagingLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_size"
+        android:visibility="gone"
+        app:dotSize="16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- line retry -->
     <com.partsystem.partvisitapp.core.utils.componenet.TryAgain
@@ -158,5 +172,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hfOrderList"
         app:message="@string/msg_no_order" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

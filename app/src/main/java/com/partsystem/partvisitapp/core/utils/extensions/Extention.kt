@@ -164,7 +164,7 @@ fun Fragment.showSyncRequiredMessage() {
 
 /*
 git add .
-git commit -m "get visitor location to check distance customer"
+git commit -m "add snackbar isIndefinite for validate credit"
 git push -u origin master
 git push
 */
