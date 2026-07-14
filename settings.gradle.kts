@@ -18,5 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "partvisitapp"
+rootProject.name = "distributor"
 include(":app")

@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logo_part" />
+            app:srcCompat="@drawable/ic_logo_app" />
 
         <!-- محتوای فرم -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivLogo">
 
-            <!-- عنوان نام کاربری -->
+            <!-- عنوان کد پرسنلی -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvRequiredUserName"
                 style="@style/SmallTextStyle"
@@ -41,21 +41,22 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_2sdp"
                 android:text="@string/label_star"
-                android:textColor="?attr/colorError"
-                app:layout_constraintEnd_toStartOf="@id/tvTitleUserName"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="?attr/colorWarning"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTitleCodePrs"
+                app:layout_constraintEnd_toStartOf="@id/tvTitleCodePrs"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleCodePrs" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvTitleUserName"
+                android:id="@+id/tvTitleCodePrs"
                 style="@style/MediumBoldTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_user_name"
+                android:text="@string/label_code_prs"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilUserName"
+                android:id="@+id/tilCodePrs"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -68,14 +69,15 @@
                 app:errorTextAppearance="@style/ErrorTextAppearance"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTitleUserName">
+                app:layout_constraintTop_toBottomOf="@id/tvTitleCodePrs">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tieUserName"
+                    android:id="@+id/tieCodePrs"
                     style="@style/Input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start|center_vertical"
+                    android:inputType="number"
                     android:layoutDirection="ltr"
                     android:maxLength="20"
                     android:textDirection="ltr" />
@@ -90,18 +92,20 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_2sdp"
                 android:text="@string/label_star"
-                android:textColor="?attr/colorError"
+                android:textColor="?attr/colorWarning"
+                app:layout_constraintBottom_toBottomOf="@id/tvTitlePassword"
                 app:layout_constraintEnd_toStartOf="@id/tvTitlePassword"
-                app:layout_constraintTop_toBottomOf="@id/tilUserName" />
+                app:layout_constraintTop_toTopOf="@id/tvTitlePassword" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvTitlePassword"
                 style="@style/MediumBoldTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_size"
                 android:text="@string/label_password"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvRequiredPassword" />
+                app:layout_constraintTop_toBottomOf="@id/tilCodePrs" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPassword"
@@ -134,7 +138,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- دکمه ورود -->
-        <com.partsystem.partvisitapp.core.utils.componenet.BottomMain
+        <ir.kitgroup.distributor.core.utils.componenet.BottomMain
             android:id="@+id/bmbLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,7 +150,7 @@
             app:layout_constraintTop_toBottomOf="@id/clContent"
             app:textBtnOne="@string/label_login" />
 
-        <com.partsystem.partvisitapp.core.utils.componenet.BottomMain
+        <ir.kitgroup.distributor.core.utils.componenet.BottomMain
             android:id="@+id/bmbSetting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

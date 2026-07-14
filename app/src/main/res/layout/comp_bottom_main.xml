@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="?attr/colorRipple" />
 
-            <com.partsystem.partvisitapp.core.utils.componenet.DotLoading
+            <ir.kitgroup.distributor.core.utils.componenet.DotLoading
                 android:id="@+id/pbTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- progress view -->
-            <com.partsystem.partvisitapp.core.utils.componenet.DotLoading
+            <ir.kitgroup.distributor.core.utils.componenet.DotLoading
                 android:id="@+id/pbOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

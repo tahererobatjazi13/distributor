@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="@dimen/_90sdp"
         android:background="@drawable/toolbar_curve_background"
         android:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,34 +18,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/toolbarContent"
+        android:id="@+id/clTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/small_size"
-        android:layout_marginTop="@dimen/large_size"
         app:layout_constraintEnd_toEndOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="@id/toolbar"
         app:layout_constraintTop_toTopOf="@id/toolbar"
         tools:layout_editor_absoluteY="16dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivSetting"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:padding="@dimen/xx_small_size"
-            android:tint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_home_setting" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/medium_size"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
@@ -52,24 +42,41 @@
                 style="@style/LargeBoldTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_size"
                 android:text="@string/label_app_name"
-                android:textColor="?attr/colorOnPrimary" />
+                android:textColor="@color/green_1B4202"
+                app:layout_constraintEnd_toStartOf="@+id/ivLogo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/MediumBoldTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_size"
+                android:text="@string/label_app_distribution"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivLogo"
+                app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivLogo"
-                android:layout_width="@dimen/_32sdp"
-                android:layout_height="@dimen/_32sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:padding="@dimen/xx_small_size"
-                app:srcCompat="@drawable/ic_logo_white" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_logo_app" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivExit"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:padding="@dimen/xx_small_size"
-            android:tint="@color/white"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_home_exit" />
@@ -81,10 +88,10 @@
         style="@style/RoundedCardViewStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/large_size"
+        android:layout_marginHorizontal="@dimen/x_large_size"
         android:layout_marginTop="-50dp"
         android:translationZ="8dp"
-        app:cardElevation="@dimen/_2sdp"
+        app:cardElevation="@dimen/xxx_small_size"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +114,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvTitleDate"
-                    style="@style/SmallTextStyle"
+                    style="@style/MediumTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_current_calender"
@@ -120,9 +127,10 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDate"
-                    style="@style/SmallBoldTextStyle"
+                    style="@style/LargeBoldTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x_small_size"
                     android:gravity="start"
                     android:text="@string/label_app_name"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +149,6 @@
                 app:layout_constraintStart_toEndOf="@+id/clDate"
                 app:layout_constraintTop_toTopOf="@+id/clDate" />
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clVisitorName"
                 android:layout_width="0dp"
@@ -153,7 +160,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvTitleVisitorName"
-                    style="@style/SmallTextStyle"
+                    style="@style/MediumTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_user_profile"
@@ -166,9 +173,10 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvVisitorName"
-                    style="@style/SmallBoldTextStyle"
+                    style="@style/LargeBoldTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x_small_size"
                     android:drawablePadding="@dimen/x_small_size"
                     android:gravity="start"
                     android:text="@string/label_app_name"
@@ -183,38 +191,111 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/x_large_size"
+        android:layout_marginTop="@dimen/large_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvHeader">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_size"
+            android:background="@drawable/selector_search_input"
+            android:padding="@dimen/medium_size"
+            app:boxBackgroundMode="none"
+            app:hintEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHomeMenu"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                style="@style/InputSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_size"
-                android:layout_marginBottom="@dimen/large_size"
-                android:isScrollContainer="false"
-                android:nestedScrollingEnabled="false"
-                android:padding="@dimen/small_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="8"
-                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_home_menu"
-                tools:spanCount="2" />
+                android:drawableEnd="@drawable/ic_search"
+                android:drawablePadding="@dimen/x_small_size"
+                android:gravity="center_vertical|start"
+                android:hint="@string/label_order_search_number"
+                android:imeOptions="actionSearch"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="@dimen/small_size" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTitleListDistribution"
+        style="@style/LargeBoldTextStyle"
+        android:layout_width="wrap_content"
+        android:textColor="@color/blue_283167"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/large_size"
+        android:layout_marginTop="@dimen/x_large_size"
+        android:text="@string/label_list_distribution_programs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clSearch" />
+
+    <!-- line list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlans"
+        android:layout_marginHorizontal="@dimen/small_size"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/medium_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleListDistribution"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_distribution_plan" />
+
+
+    <!-- line retry -->
+    <ir.kitgroup.distributor.core.utils.componenet.TryAgain
+        android:id="@+id/tryAgain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:translationZ="@dimen/_20sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvHeader" />
+
+    <!-- line loading -->
+    <ir.kitgroup.distributor.core.utils.componenet.DotLoading
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:translationZ="2dp"
+        android:visibility="gone"
+        app:dotSize="18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvHeader" />
+
+    <!-- line info -->
+    <ir.kitgroup.distributor.core.utils.componenet.Info
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:translationZ="2dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvHeader"
+        app:message="@string/msg_no_order" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

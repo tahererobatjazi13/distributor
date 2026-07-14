@@ -6,137 +6,35 @@
     android:layout_height="match_parent"
     android:background="?attr/colorBackSurface">
 
-    <com.partsystem.partvisitapp.core.utils.componenet.Header
+    <ir.kitgroup.distributor.core.utils.componenet.Header
         android:id="@+id/hfOrderList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:drawableImgTwoHeader="@drawable/ic_back"
         app:isShowImgTwoHeader="true"
         app:isShowSeparatorHeader="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:textTitleHeader="@string/label_sent_orders" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clTop"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/rvOrderList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hfOrderList">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilSearch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_size"
-            android:layout_marginHorizontal="@dimen/medium_size"
-            android:background="@drawable/selector_search_input"
-            app:boxBackgroundMode="none"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clFilter"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSearch"
-                style="@style/Input"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_36sdp"
-                android:drawableEnd="@drawable/ic_search"
-                android:drawablePadding="@dimen/x_small_size"
-                android:gravity="center_vertical|start"
-                android:hint="@string/label_order_search"
-                android:padding="@dimen/small_size" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/small_size"
-            android:background="@drawable/selector_search_input"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/small_size"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/tilSearch"
-            app:layout_constraintStart_toEndOf="@+id/btnSyncAllOrder"
-            app:layout_constraintTop_toTopOf="@+id/tilSearch">
-
-            <ImageView
-                android:id="@+id/ivFilter"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_filter_account"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvCountFilter"
-                style="@style/SmallTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/small_size"
-                android:gravity="center_vertical"
-                android:paddingEnd="@dimen/x_small_size"
-                android:textColor="@color/red_FF0E0E"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ivFilter"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.partsystem.partvisitapp.core.utils.componenet.BottomMain
-            android:id="@+id/btnSyncAllOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_size"
-            android:visibility="gone"
-            app:backColorBtnOne="@color/blue_283167"
-            app:badgeTextColorBtnOne="?attr/colorOnPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/tilSearch"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tilSearch"
-            app:textBtnOne="@string/label_sync_all_order" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:textTitleHeader="@string/label_order_list" />
 
     <!-- line list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOrderList"
-        android:layout_marginTop="@dimen/small_size"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/small_size"
+        android:layout_marginHorizontal="@dimen/medium_size"
         android:elevation="@dimen/xx_small_size"
-        app:layout_constraintBottom_toTopOf="@id/pagingLoading"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clTop"
-        tools:itemCount="10"
-        tools:listitem="@layout/item_order_list" />
-
-    <!-- DotLoading Paging -->
-    <com.partsystem.partvisitapp.core.utils.componenet.DotLoading
-        android:id="@+id/pagingLoading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/small_size"
-        android:visibility="gone"
-        app:dotSize="16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hfOrderList"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_order_distribution" />
 
     <!-- line retry -->
-    <com.partsystem.partvisitapp.core.utils.componenet.TryAgain
+    <ir.kitgroup.distributor.core.utils.componenet.TryAgain
         android:id="@+id/tryAgain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -148,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hfOrderList" />
 
     <!-- line loading -->
-    <com.partsystem.partvisitapp.core.utils.componenet.DotLoading
+    <ir.kitgroup.distributor.core.utils.componenet.DotLoading
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -158,10 +56,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clTop" />
+        app:layout_constraintTop_toBottomOf="@+id/hfOrderList" />
 
     <!-- line info -->
-    <com.partsystem.partvisitapp.core.utils.componenet.Info
+    <ir.kitgroup.distributor.core.utils.componenet.Info
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="0dp"

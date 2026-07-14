@@ -8,17 +8,16 @@ plugins {
 
 }
 //partvisit , poopaksystempart.
-
 android {
-    namespace = "com.partsystem.partvisitapp"
+    namespace = "ir.kitgroup.distributor"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.partsystem.partvisitapp"
+        applicationId = "ir.kitgroup.distributor"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.4"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

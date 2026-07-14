@@ -41,10 +41,7 @@
             app:errorEnabled="true"
             app:errorIconDrawable="@null"
             app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:hintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitleUserName">
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieServerAddress"

@@ -1,26 +1,60 @@
 <resources>
 
     <!-- Labels -->
-    <string name="app_name">partVisit</string>
-    <string name="label_app_name">پارت ویزیت</string>
+    <string name="label_app_name">پخش هورکا کوروش</string>
+    <string name="app_name">توزیع</string>
+    <string name="label_app_distribution">اپلیکیشن موزع</string>
+    <string name="label_plan_name">نام برنامه:</string>
+    <string name="label_plan_number">شماره برنامه:</string>
+    <string name="label_plan_date">تاریخ توزیع:</string>
+    <string name="label_count_order">تعداد سفارش:</string>
+    <string name="label_distributed_quantity">تعداد توزیع شده:</string>
+    <string name="label_undistributed_Quantity">تعداد توزیع نشده:</string>
+    <string name="label_number_cancellations_returns_completed">تعداد کنسل یا برگشت کامل شده:</string>
+    <string name="label_list_distribution_programs">لیست برنامه‌های توزیع
+</string>
+    <string name="label_yes">بلی</string>
+    <string name="label_no">خیر</string>
+    <string name="label_ok">بله</string>
+
+    <string name="msg_order_info_not_available">اطلاعات سفارش در دسترس نیست</string>
+    <string name="msg_order_id_not_valid">شناسه سفارش معتبر نیست</string>
+    <string name="msg_person_guid_not_valid">شناسه شخص معتبر نیست</string>
+    <string name="msg_delivery_confirmed_successfully">تحویل از انبار با موفقیت تأیید شد</string>
+    <string name="msg_error_general">خطایی رخ داده است</string>
+
+
+    <string name="label_order_delivery_from_warehouse">تحویل سفارش از انبار:</string>
+    <string name="label_mobile">موبایل:</string>
+    <string name="label_status">وضعیت:</string>
+    <string name="label_settlement_type">نوع تسویه:</string>
+    <string name="label_delivery_confirmation">تایید تحویل به مشتری</string>
+    <string name="label_delivery_warehouse">تایید  تحویل از انبار</string>
+    <string name="label_delivery_confirmation_order">تایید تحویل سفارش</string>
+    <string name="label_delivery_status_customer">وضعیت تحویل به مشتری:</string>
+    <string name="label_complete_delivery">تحویل کامل</string>
+    <string name="label_incomplete_delivery">تحویل ناقص</string>
+    <string name="label_full_return">برگشت کامل</string>
+    <string name="label_payment_status">وضعیت پرداخت:</string>
+    <string name="label_order_desc">توضیحات سفارش :</string>
+    <string name="unit_count">عدد</string>
+
     <string name="label_product_group">گروه کالا</string>
     <string name="label_product_catalog">کاتالوگ کالا</string>
     <string name="label_orders">سفارشات</string>
     <string name="label_register_order">ثبت سفارش</string>
     <string name="label_reports">گزارشات</string>
-
     <string name="label_customers">مشتریان</string>
     <string name="label_setting">تنظیمات</string>
     <string name="label_receiving_data">دریافت اطلاعات</string>
     <string name="label_sending_data">ارسال اطلاعات</string>
     <string name="label_version">نســخه</string>
     <string name="label_register_send_track_order">ثــبت ، ارســال سفــارش</string>
+    <string name="label_receiving_orders_delivering_customer">دریافت سفارش از انبار ،  تحویل به مشتری</string>
     <string name="label_login">ورود</string>
     <string name="label_confirm">تایید</string>
     <string name="label_retry">تلاش مجدد</string>
     <string name="label_star">*</string>
-    <string name="label_no">خیر</string>
-    <string name="label_ok">بله</string>
     <string name="label_logout">خروج از حساب کاربری</string>
     <string name="label_sent_orders">سفارشات ارسال شده</string>
     <string name="label_current_day_orders">سفارشات روز جاری</string>
@@ -31,59 +65,36 @@
     <string name="label_number_units">تعداد واحد:</string>
     <string name="label_number_packing">تعداد بسته:</string>
     <string name="label_order_number">شماره سفارش:</string>
-    <string name="label_order_draft_number">شماره پیش نویس:</string>
-    <string name="label_agent">نماینده:</string>
     <string name="label_customer_list">لیست مشتریان</string>
-    <string name="label_direction_list">لیست مسیر ها</string>
     <string name="label_order_list">لیست سفارشات</string>
     <string name="label_filter_order">فیلتر سفارشات</string>
     <string name="label_delete_filter">حذف فیلتر</string>
     <string name="label_customer_name">نام مشتری:</string>
     <string name="label_customer">مشتری:</string>
-    <string name="label_direction">مسیر:</string>
-    <string name="label_customer_direction">مسیر مشتری:</string>
-    <string name="label_invoice_category">گروه صورتحساب:</string>
-    <string name="label_customer_detail">جزییات مشتری</string>
-    <string name="label_customer_information">اطلاعات مشتری:</string>
-    <string name="label_customer_name_star">نام مشتری * :</string>
-    <string name="label_customer_phone_star">شماره همراه مشتری * :</string>
     <string name="label_call_phone">شماره تماس:</string>
     <string name="label_add_customer">افزودن مشتری</string>
     <string name="label_edit_customer">ویرایش مشتری</string>
     <string name="label_add_product">افزودن محصول</string>
     <string name="label_edit_product">ویرایش محصول</string>
-    <string name="label_customer_search">جستجو مشتری ...</string>
-    <string name="label_direction_search">جستجو مسیر ...</string>
-    <string name="label_order_search">جستجو سفارش ...</string>
+    <string name="label_order_search_number">شماره سفارش</string>
     <string name="label_phone">تلفن:</string>
     <string name="label_address">آدرس:</string>
     <string name="label_date_time">تاریخ و زمان:</string>
     <string name="label_header_order">هدر سفارش</string>
     <string name="label_total_order">مبلغ سفارش:</string>
     <string name="label_final_factor">مبلغ نهایی:</string>
-    <string name="label_sum_discount_price">جمع تخفیفات:</string>
     <string name="label_sum_price">جمع کل:</string>
-    <string name="label_sum_vat">جمع مالیات:</string>
-    <string name="label_product_detail">جزییات محصول</string>
-    <string name="label_product_information">اطلاعات محصول :</string>
     <string name="label_description">توضیحات</string>
-    <string name="label_product_description">توضیحات محصول :</string>
     <string name="label_unit_name">واحد:</string>
-    <string name="label_no_packing">بدون بسته‌بندی</string>
-    <string name="label_rate">نرخ:</string>
     <string name="label_total">جمع</string>
-    <string name="label_discount">تخفیف</string>
-    <string name="label_amount_1">مقدار1</string>
-    <string name="label_amount_2">مقدار 2</string>
+
     <string name="label_product_name_header">نام محصول</string>
     <string name="label_product_name">نام کالا :</string>
     <string name="label_product">کالا:</string>
-    <string name="label_product_search">جستجو محصولات ...</string>
     <string name="label_products">محصولات</string>
     <string name="label_close">بستن</string>
     <string name="label_save">ذخیره</string>
-    <string name="label_dark_mode">حالت تیره</string>
-    <string name="label_user_name">نام کاربری</string>
+    <string name="label_code_prs">کد پرسنلی</string>
     <string name="label_user_name_item">نام کاربری:</string>
     <string name="label_password">رمز عبور</string>
     <string name="label_date">تاریخ:</string>
@@ -93,79 +104,34 @@
     <string name="label_delivery_date">تاریخ تحویل:</string>
     <string name="label_continue">ادامه</string>
     <string name="label_order_detail">جزییات سفارش</string>
-    <string name="label_total_discount">جمع تخفیف:</string>
-    <string name="label_discount_order">تخفیف فاکتور:</string>
     <string name="label_total_price">قابل پرداخت:</string>
     <string name="label_view_order">مشاهده سفارش</string>
-    <string name="label_send_order">ثبت و ارسال نهایی سفارش</string>
-    <string name="label_send_online_order">ارسال آنلاین سفارش</string>
-    <string name="label_draft_order">پیش نویس سفارش</string>
-    <string name="label_draft_order_item">سفارش پیش نویس</string>
-    <string name="label_edit_order">ویرایش سفارش</string>
     <string name="label_order_description">توضیحات سفارش...</string>
-    <string name="label_apply_discount">اعمال تخفیف</string>
-    <string name="label_select_discount">انتخاب تخفیف</string>
-    <string name="label_choose">انتخاب کنید</string>
-    <string name="label_sales_plan">طرح فروش:</string>
-    <string name="label_Resolution">مصوبه:</string>
-    <string name="label_payment_type">نحوه تسویه:</string>
     <string name="label_cancel">لغو</string>
     <string name="label_register">ثبت</string>
-    <string name="label_packing_type">نوع بسته بندی: </string>
-    <string name="app_price_item">12000ریال</string>
-    <string name="label_sync_order">ارسال سفارش</string>
-    <string name="label_sync_all_order">ارسال همه سفارشات</string>
-    <string name="label_please_select">لطفا انتخاب کنید</string>
     <string name="label_server_setting">تنظیمات سرور</string>
-    <string name="label_equivalent">معادل</string>
-    <string name="label_update">آپدیت</string>
     <string name="label_back">بازگشت</string>
     <string name="label_attention">توجه</string>
-    <string name="label_understand">متوجه شدم</string>
-    <string name="label_remove_cache">پاک کردن داده</string>
-    <string name="label_warning">هشدار</string>
     <string name="label_cancellation">انصراف</string>
-    <string name="label_open_setting">باز کردن تنظیمات</string>
-    <string name="label_validate_credit">در حال بررسی اعتبار...</string>
-    <string name="label_select_all">انتخاب همه</string>
-    <string name="label_receive_update_information">دریافت و به روز رسانی اطلاعات</string>
-    <string name="label_location_off">لوکیشن خاموش است!</string>
 
-    <!-- date picker -->
-    <string name="picker_announce_current_selection">Current selection: %1$s</string>
-    <string name="picker_date_header_selected">%1$s</string>
-    <string name="picker_date_header_title">یک تاریخ انتخاب کنید</string>
-    <string name="picker_date_header_unselected">یک تاریخ انتخاب کنید</string>
-    <string name="picker_range_header_only_end_selected">تاریخ شروع – %1$s</string>
-    <string name="picker_range_header_only_start_selected">%1$s – تاریخ پایان</string>
-    <string name="picker_range_header_selected">%1$s – %2$s</string>
-    <string name="picker_range_header_title">تاریخ را انتخاب کنید</string>
-    <string name="picker_range_header_unselected">تاریخ شروع - تاریخ پایان</string>
+    <string name="payment_cash_settlement">تسویه نقدی</string>
+    <string name="payment_full_credit">مانده دار کامل</string>
+    <string name="payment_cash_and_credit">نقد و مانده دار</string>
+    <string name="payment_postdated_check">چک مدت دار</string>
 
 
     <!-- Messages -->
-    <string name="msg_no_customer">مشتری یافت نشد</string>
-    <string name="msg_no_direction">مسیری یافت نشد</string>
-    <string name="msg_no_product">محصولی یافت نشد</string>
     <string name="msg_no_data">آیتمی یافت نشد</string>
     <string name="msg_no_order">سفارشی یافت نشد</string>
-    <string name="msg_sure_send_order">سفارش به صورت قطعی ثبت شود؟</string>
-    <string name="msg_sure_send_orders">همه سفارشات ثبت شده به صورت قطعی ارسال شوند؟</string>
-    <string name="msg_sure_delete_orders">آیا برای حذف اطمینان دارید؟</string>
-    <string name="msg_log_out">    با خارج شدن از حساب کاربری تمامی اطلاعات ذخیره شده در دستگاه حذف خواهد شد آیا مایل به خروج از حساب کاربری خود می باشید؟</string>
+    <string name="msg_log_out">آیا مایل به خروج از حساب کاربری خود می باشید؟</string>
     <string name="msg_success_login">ورود با موفقیت انجام شد.</string>
-    <string name="msg_success_validate_credit">اعتبار سنجی با موفقیت انجام شد.</string>
     <string name="msg_success_update">بروزرسانی با موفقیت انجام شد.</string>
     <string name="msg_success_download">دریافت اطلاعات با موفقیت انجام شد.</string>
     <string name="msg_press_back_button_again_exit">برای خروج دوباره دکمه بازگشت را بزنید</string>
     <string name="msg_order_successfully_sent">سفارش با موفقیت ارسال شد</string>
-    <string name="msg_cannot_go_back_warning">پس از زدن تیک ثبت ، امکان بازگشت به لیست محصولات وجود ندارد. برای ادامه کار، سفارش را ذخیره یا ارسال کنید.</string>
-    <string name="msg_cannot_delete_when_completed">در حالت ثبت ، امکان حذف ردیف وجود ندارد. لطفاً ابتدا تیک ثبت را بردارید.</string>
-    <string name="msg_select_direction">حداقل یک مسیر را انتخاب کنید</string>
-    <string name="msg_location_access_required">دسترسی لوکیشن لازم است</string>
-    <string name="msg_place_order_location_must_be_checked">
-                برای ثبت سفارش، باید موقعیت مکانی شما بررسی شود تا مشخص شود در محدوده مشتری هستید یا خیر. " +
-                        "لطفاً دسترسی لوکیشن را فعال کنید.</string>
+    <string name="msg_order_has_already_delivered">این سفارش فروش قبلا از انبار تحویل گرفته شده است</string>
+
+
     <!-- Errors -->
     <string name="error_enter_address_server">آدرس سرور را وارد کنید</string>
     <string name="error_network_json_response">مشکل در دریافت اطلاعات از سرور</string>
@@ -182,8 +148,7 @@
     <string name="error_request_fields">لطفا تمام فیلدهارا پر کنید</string>
     <string name="error_request_amounts">لطفا مقدار وارد کنید</string>
     <string name="error_enter_password">رمز عبور را وارد کنید</string>
-    <string name="error_enter_username">نام کاربری را وارد کنید</string>
-    <string name="error_no_items_cart">هیچ آیتمی به سبد خرید اضافه نشده</string>
+    <string name="error_enter_code_prs">کد پرسنلی را وارد کنید</string>
     <string name="error_user_not_found">کاربر یافت نشد</string>
     <string name="error_not_detail">جزییات سفارش یافت نشد</string>
     <string name="error_insufficient_inventory">موجودی انبار کافی نیست</string>
@@ -218,6 +183,39 @@
     <string name="error_location_service_must_turned_on">برای ثبت سفارش، باید سرویس مکان‌یابی گوشی روشن باشد. لطفاً GPS یا Location را روشن کنید و دوباره تلاش کنید.</string>
     <string name="error_unable_get_current_location">دریافت موقعیت فعلی ممکن نشد. لطفاً دوباره تلاش کنید.</string>
     <string name="error_location_access_not_available">دسترسی لوکیشن در دسترس نیست.</string>
+    <string name="error_invalid_username_password">پرسنل با این کد پرسنلی و رمز عبور وجود ندارد.</string>
+    <string name="error_login_failed">خطایی در ورود رخ داده است.</string>
 
+
+    <string name="error_enter_order_number">شماره سفارش را وارد کنید</string>
+
+    <string name="error_order_not_found">هیچ سفارش فروشی با این شماره پیدا نشد.</string>
+    <string name="error_order_data_empty">اطلاعات سفارش خالی است.</string>
+    <string name="error_server_empty_response">پاسخی از سرور دریافت نشد.</string>
+    <string name="error_order_distribution_status">خطا در دریافت لیست برنامه ها</string>
+
+    <string name="msg_warehouse_delivery_confirmed_successfully">تحویل از انبار با موفقیت تأیید شد.</string>
+    <string name="error_invalid_order_info">اطلاعات سفارش معتبر نیست.</string>
+    <string name="error_confirm_warehouse_delivery_failed">خطا در ثبت تأیید تحویل از انبار.</string>
+
+    <string name="msg_order_confirmation_success">تأیید سفارش با موفقیت ثبت شد.</string>
+    <string name="error_order_confirmation_failed">خطایی در ثبت تأیید سفارش رخ داد.</string>
+        <string name="error_empty_response">پاسخ سرور خالی است</string>
+        <string name="msg_no_distribution_plan">هیچ برنامه توزیعی برای این موزع موجود نمی‌باشد</string>
+        <string name="error_fetch_distribution_plans">خطا در دریافت اطلاعات از سرور</string>
+        <string name="error_server_code">خطای سرور: %1$d</string>
+        <string name="error_unknown_server">خطای ناشناخته در ارتباط با سرور</string>
+    <string name="msg_no_order_distribution_plan">سفارشی برای این برنامه توزیع موجود نمی‌باشد</string>
+    <string name="error_fetch_order_by_no">خطا در دریافت اطلاعات سفارش</string>
+    <string name="error_order_confirmation_no_data">اطلاعاتی برای تایید سفارش وجود ندارد</string>
+
+
+
+    <string name="label_sure_delivery">آیا سفارش تحویل داده شد؟</string>
+    <string name="label_ok_delivery">بله، ثبت تحویل</string>
+    <string name="label_success_delivery">سفارش با موفقیت تحویل داده شد</string>
+    <string name="label_order_info">اطلاعات سفارش</string>
+
+    <string name="label_product_count">تعداد کالا:</string>
 
 </resources>

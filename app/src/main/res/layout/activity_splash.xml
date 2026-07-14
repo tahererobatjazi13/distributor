@@ -17,10 +17,10 @@
             android:id="@+id/ivLogo"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="@dimen/_200sdp"
-            app:srcCompat="@drawable/ic_logo_part"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logo_app" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -32,7 +32,7 @@
         android:background="@drawable/bg_rounded_rectangle"
         android:paddingHorizontal="@dimen/big_size"
         android:paddingVertical="@dimen/small_size"
-        android:text="@string/label_register_send_track_order"
+        android:text="@string/label_receiving_orders_delivering_customer"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/tvVersion"
         app:layout_constraintEnd_toEndOf="parent"

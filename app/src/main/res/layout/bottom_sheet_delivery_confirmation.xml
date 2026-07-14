@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_rounded_rectangle_top"
+    android:layoutDirection="rtl"
+    android:padding="@dimen/large_size">
+
+    <View
+        android:id="@+id/viewHandle"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="#D1D5DB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTitle"
+        style="@style/LargeBoldTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/medium_size"
+        android:gravity="center"
+        android:text="@string/label_delivery_confirmation_order"
+        android:textColor="@color/blue_283167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewHandle" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/llOrderInfo"
+        style="@style/RoundedCardViewStyleCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:background="@color/blue_200063F5"
+        android:orientation="vertical"
+        android:padding="@dimen/medium_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/medium_size">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clOrderNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTitleOrderNumber"
+                    style="@style/MediumTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/label_order_number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvOrderNumber"
+                    style="@style/XLargeBoldTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/xx_small_size"
+                    android:gravity="end"
+                    android:textColor="@color/colorPrimary"
+                    android:textDirection="rtl"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTitleOrderNumber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clAccountName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clOrderNumber">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTitleAccountName"
+                    style="@style/MediumTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/label_customer_name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAccountName"
+                    style="@style/XLargeBoldTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/xx_small_size"
+                    android:textDirection="rtl"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTitleAccountName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvStatusLabel"
+        style="@style/MediumBoldTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_large_size"
+        android:text="@string/label_delivery_status_customer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llOrderInfo" />
+
+    <RadioGroup
+        android:id="@+id/rgDeliveryStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvStatusLabel">
+
+        <RadioButton
+            android:id="@+id/rbFullReturn"
+            style="@style/XLargeTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end|center_vertical"
+            android:text="@string/label_full_return" />
+
+        <RadioButton
+            android:id="@+id/rbPartialDelivery"
+            style="@style/XLargeTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end|center_vertical"
+            android:text="@string/label_incomplete_delivery" />
+
+        <RadioButton
+            android:id="@+id/rbFullDelivery"
+            style="@style/XLargeTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:gravity="end|center_vertical"
+            android:text="@string/label_complete_delivery" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="@dimen/x_small_size"
+        android:background="#EEEEEE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgDeliveryStatus" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvPaymentLabel"
+        style="@style/MediumBoldTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        android:text="@string/label_payment_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgDeliveryStatus" />
+
+    <Spinner
+        android:id="@+id/spPaymentType"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/medium_size"
+        android:background="@drawable/selector_search_input"
+        android:paddingHorizontal="@dimen/medium_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPaymentLabel" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="@dimen/small_size"
+        app:boxCornerRadiusBottomStart="@dimen/small_size"
+        app:boxCornerRadiusTopEnd="@dimen/small_size"
+        app:boxCornerRadiusTopStart="@dimen/small_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spPaymentType">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDescription"
+            style="@style/LargeTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:hint="@string/label_order_description"
+            android:inputType="textMultiLine"
+            android:minLines="3" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ir.kitgroup.distributor.core.utils.componenet.BottomMain
+        android:id="@+id/bmbSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        app:backColorBtnOne="@color/green_21BF73"
+        app:badgeTextColorBtnOne="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilDesc"
+        app:textBtnOne="@string/label_register" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

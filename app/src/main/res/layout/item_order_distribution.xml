@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/RoundedCardViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/small_size"
+    app:cardCornerRadius="@dimen/medium_size">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="vertical"
+        android:padding="@dimen/medium_size">
+
+        <LinearLayout
+            android:id="@+id/llDateNumberOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clOrderDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTitleOrderDate"
+                    style="@style/MediumTextStyle"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvOrderDate"
+                    style="@style/LargeBoldTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/xx_small_size"
+                    android:gravity="end"
+                    android:textDirection="rtl"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTitleOrderDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clOrderNumber"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTitleOrderNumber"
+                    style="@style/MediumTextStyle"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/label_order_number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvOrderNumber"
+                    style="@style/XLargeBoldTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/xx_small_size"
+                    android:gravity="end"
+                    android:textColor="@color/colorPrimary"
+                    android:textDirection="rtl"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTitleOrderNumber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAccountName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/small_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitleAccountName"
+                style="@style/MediumTextStyle"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/label_customer_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAccountName"
+                style="@style/XLargeBoldTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/xx_small_size"
+                android:textDirection="rtl"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitleAccountName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/llStatusOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_size"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llDateNumberOrder">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDistributorDeliveryStatus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTitleDistributorDeliveryStatus"
+                    style="@style/MediumTextStyle"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent"
+                    android:text="@string/label_order_delivery_from_warehouse"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvDistributorDeliveryStatus"
+                    style="@style/XLargeBoldTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/xx_small_size"
+                    android:textDirection="rtl"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTitleDistributorDeliveryStatus"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSettlementTypeName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTitleSettlementTypeName"
+                    style="@style/MediumTextStyle"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent"
+                    android:text="@string/label_settlement_type"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvSettlementTypeName"
+                    style="@style/MediumBoldTextStyle"
+                    android:layout_width="0dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/xx_small_size"
+                    android:textColor="@color/colorPrimary"
+                    android:textDirection="rtl"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTitleSettlementTypeName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAccountMobile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/small_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llStatusOrder">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitleAccountMobile"
+                style="@style/MediumTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/label_mobile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAccountMobile"
+                style="@style/LargeBoldTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/xx_small_size"
+                android:gravity="end"
+                android:textDirection="rtl"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitleAccountMobile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAccountAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clAccountMobile">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitleAccountAddress"
+                style="@style/MediumTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_address"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAccountAddress"
+                style="@style/LargeBoldTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/xx_small_size"
+                android:textDirection="rtl"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitleAccountAddress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/x_small_size"
+            android:background="#EEEEEE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clAccountAddress" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSumNetPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitleSumNetPrice"
+                style="@style/MediumTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_total_order"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvSumNetPrice"
+                style="@style/LargeBoldTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/xx_small_size"
+                android:textColor="@color/orange_FF5722"
+                android:textDirection="rtl"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitleSumNetPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDescriptionOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llStatusOrder">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitleDescriptionOrder"
+                style="@style/MediumTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_order_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDescriptionOrder"
+                style="@style/MediumBoldTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/xx_small_size"
+                android:textColor="@color/purple_8F21A2"
+                android:textDirection="rtl"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitleDescriptionOrder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ir.kitgroup.distributor.core.utils.componenet.BottomMain
+            android:id="@+id/bmbDeliveryConfirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_size"
+            android:layout_marginTop="@dimen/large_size"
+            app:backColorBtnOne="@color/green_21BF73"
+            app:badgeTextColorBtnOne="?attr/colorOnPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clSumNetPrice"
+            app:textBtnOne="@string/label_delivery_confirmation" />
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

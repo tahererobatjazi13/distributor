@@ -28,14 +28,14 @@
 -keep class com.google.gson.** { *; }
 
 # Network
--keep class com.partsystem.partvisitapp.core.network.** { *; }
+-keep class ir.kitgroup.distributor.core.network.** { *; }
 
 # ALL DTO & ENTITY MODELS (خیلی مهم)
--keep class com.partsystem.partvisitapp.feature.**.model.** { *; }
--keep class com.partsystem.partvisitapp.core.database.entity.** { *; }
+-keep class ir.kitgroup.distributor.feature.**.model.** { *; }
+-keep class ir.kitgroup.distributor.core.database.entity.** { *; }
 
 # ApiService
--keep interface com.partsystem.partvisitapp.core.network.ApiService
+-keep interface ir.kitgroup.distributor.core.network.ApiService
 
 # Keep annotations
 -keepattributes *Annotation*
