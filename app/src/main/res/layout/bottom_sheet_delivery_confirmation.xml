@@ -25,7 +25,6 @@
         android:layout_marginTop="@dimen/medium_size"
         android:gravity="center"
         android:text="@string/label_delivery_confirmation_order"
-        android:textColor="@color/blue_283167"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewHandle" />
 
@@ -73,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/xx_small_size"
                     android:gravity="end"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="?attr/colorText"
                     android:textDirection="rtl"
                     app:layout_constraintEnd_toStartOf="@+id/tvTitleOrderNumber"
                     app:layout_constraintStart_toStartOf="parent"

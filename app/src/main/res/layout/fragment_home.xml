@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/small_size"
                 android:text="@string/label_app_distribution"
+                android:textColor="@color/green_1B4202"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ivLogo"
                 app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
@@ -237,7 +238,6 @@
         android:id="@+id/tvTitleListDistribution"
         style="@style/LargeBoldTextStyle"
         android:layout_width="wrap_content"
-        android:textColor="@color/blue_283167"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/large_size"
         android:layout_marginTop="@dimen/x_large_size"

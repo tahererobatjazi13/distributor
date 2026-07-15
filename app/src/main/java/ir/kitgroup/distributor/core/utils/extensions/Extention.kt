@@ -70,7 +70,7 @@ fun getTodayPersianDate(): String {
 
 /*
 git add .
-git commit -m "get visitor location to check distance customer"
+git commit -m "change color background for dark mode"
 git push -u origin master
 git push
 */

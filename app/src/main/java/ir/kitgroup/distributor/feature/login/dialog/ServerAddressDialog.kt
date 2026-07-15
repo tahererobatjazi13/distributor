@@ -13,6 +13,7 @@ import ir.kitgroup.distributor.core.utils.datastore.MainPreferences
 import ir.kitgroup.distributor.core.utils.fixPersianChars
 import ir.kitgroup.distributor.databinding.DialogServerAddressBinding
 import dagger.hilt.android.AndroidEntryPoint
+import ir.kitgroup.distributor.core.network.BaseUrlProvider
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -24,6 +25,8 @@ class ServerAddressDialog : DialogFragment() {
     @Inject
     lateinit var mainPreferences: MainPreferences
 
+    @Inject
+    lateinit var baseUrlProvider: BaseUrlProvider
     private lateinit var binding: DialogServerAddressBinding
 
     override fun onCreateView(
@@ -69,6 +72,7 @@ class ServerAddressDialog : DialogFragment() {
                 }
 
                 mainPreferences.saveBaseUrl(baseUrl)
+                baseUrlProvider.updateBaseUrl(baseUrl)
                 dismiss()
             }
         }

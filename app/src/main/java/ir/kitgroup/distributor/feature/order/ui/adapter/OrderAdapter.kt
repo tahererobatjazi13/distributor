@@ -1,6 +1,7 @@
 package ir.kitgroup.distributor.feature.order.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -31,9 +32,6 @@ class OrderAdapter(
             tvAccountMobile.text = item.mobile
             tvOrderDate.text = item.ordDate
             if (item.distributorDeliveryStatus == true) {
-                root.setCardBackgroundColor(
-                    androidx.core.content.ContextCompat.getColor(root.context, R.color.white)
-                )
 
                 tvDistributorDeliveryStatus.text = root.context.getString(R.string.label_yes)
                 bmbDeliveryConfirmation.show()
@@ -47,10 +45,6 @@ class OrderAdapter(
                 root.strokeWidth = 2
                 root.strokeColor =
                     androidx.core.content.ContextCompat.getColor(root.context, R.color.colorError)
-
-                root.setCardBackgroundColor(
-                    androidx.core.content.ContextCompat.getColor(root.context, R.color.light_red_bg)
-                )
 
                 tvDistributorDeliveryStatus.text = root.context.getString(R.string.label_no)
 
