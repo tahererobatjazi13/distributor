@@ -53,6 +53,27 @@ class DeliveryConfirmationBottomSheet : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): android.app.Dialog {
+        val dialog =
+            super.onCreateDialog(savedInstanceState) as com.google.android.material.bottomsheet.BottomSheetDialog
+
+        dialog.setOnShowListener { dialogInterface ->
+            val bottomSheetDialog =
+                dialogInterface as com.google.android.material.bottomsheet.BottomSheetDialog
+            val bottomSheet =
+                bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+
+            bottomSheet?.let {
+                val behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(it)
+                it.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+                behavior.state =
+                    com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
+                behavior.skipCollapsed = true
+            }
+        }
+        return dialog
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.resetConfirmOrderState()

@@ -10,9 +10,12 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_height="wrap_content"
         android:background="@drawable/toolbar_curve_background"
         android:elevation="0dp"
+        android:minHeight="@dimen/_90sdp"
+        android:paddingTop="@dimen/medium_size"
+        android:paddingBottom="@dimen/medium_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,15 +27,12 @@
         android:layout_marginHorizontal="@dimen/small_size"
         app:layout_constraintEnd_toEndOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        tools:layout_editor_absoluteY="16dp">
+        app:layout_constraintTop_toTopOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/medium_size"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/small_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -90,14 +90,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/x_large_size"
-        android:layout_marginTop="-50dp"
         android:translationZ="8dp"
         app:cardElevation="@dimen/xxx_small_size"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintTop_toBottomOf="@+id/clTop">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -197,7 +194,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/x_large_size"
-        android:layout_marginTop="@dimen/large_size"
+        android:layout_marginTop="@dimen/small_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvHeader">
@@ -240,7 +237,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/large_size"
-        android:layout_marginTop="@dimen/x_large_size"
+        android:layout_marginTop="@dimen/medium_size"
         android:text="@string/label_list_distribution_programs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clSearch" />
@@ -248,9 +245,9 @@
     <!-- line list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPlans"
-        android:layout_marginHorizontal="@dimen/small_size"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/small_size"
         android:padding="@dimen/medium_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

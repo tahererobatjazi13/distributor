@@ -56,7 +56,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnOne"
                 style="@style/ButtonDefault"
-                android:gravity="center"
+                android:gravity="center|center_vertical"
                 android:stateListAnimator="@null"
                 android:text="@string/label_confirm"
                 android:visibility="visible"
